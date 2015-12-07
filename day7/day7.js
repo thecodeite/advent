@@ -30,6 +30,11 @@ data.forEach(row => {
   wires[parsed.variable] = parsed.operation;
 });
 
+wires['b'] = {
+  left: 46065,
+  action: 'v'
+}
+
 console.log('a='+resolve('a', []));
 
 function resolve(wireName, state) {

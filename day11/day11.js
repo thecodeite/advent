@@ -1,7 +1,7 @@
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-var password = 'vzbxkghb';
-
+//var password = 'vzbxkghb';
+var password = nextPassword('vzbxxyzz');
 while(!isValid(password)) {
 
   password = nextPassword(password);

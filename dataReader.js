@@ -5,6 +5,12 @@ module.exports.readLineData = function (path) {
 
   return fs.readFileSync(path)
     .toString()
-    .split("\n")
+    .split('\n')
     .filter(x=>x.length > 0);
-}
+};
+
+module.exports.readData = function (path) {
+  path = path || 'data';
+
+  return fs.readFileSync(path).toString();
+};

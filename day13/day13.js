@@ -66,6 +66,23 @@ const parsedData = data.map(parseLine);
 const people = parsedData
   .map(x=>x.a)
   .unique();
+  
+people.push('Z');
+
+people.forEach(p => {
+  parsedData.push({
+    a: 'Z',
+    b: p,
+    ab: 'Z'+p,
+    h: 0
+  });
+  parsedData.push({
+    a: p,
+    b: 'Z',
+    ab: p+'Z',
+    h: 0
+  });
+});
 
 const combinations = parsedData.toObject(key=>key.ab, val=>val.h);
 

@@ -7,7 +7,7 @@ const data = readLineData();
 //];
 
 Array.prototype.max = function(comp) {
-	const first = this.shift();
+	const first = this[0];
 	var lowest = first;
 
 	this.forEach(x => lowest = (comp(x)>comp(lowest))?x:lowest);
@@ -23,6 +23,7 @@ raindeers.forEach(r => {
 	r.energy = r.speedTime;
 	r.flying = true;
 	r.pos = 0;
+	r.score = 0;
 });
 
 for(var tick=1; tick<=seconds; tick++) {
@@ -47,12 +48,20 @@ for(var tick=1; tick<=seconds; tick++) {
 		}
 		
 		console.log(r.name, 'at', r.pos, `Energy: ${r.energy} Sleeping:${r.sleeping}`);
-		
+	});
+	
+	var leader = raindeers.max(x=>x.pos);
+	
+	raindeers.forEach(r=>{
+		if(r.pos === leader.pos) {
+			console.log(r.name, 'in the lead and scores a point!');
+			r.score++;
+		}
 	});
 	console.log();
 }
 
-console.log('Winner:', raindeers.max(r=>r.pos));
+console.log('Winner:', raindeers.max(r=>r.score));
 
 function parseLine(line) {
 	  //'Blitze can fly 16000 km/s  for 11111 seconds, but then must rest for 162  seconds.'             

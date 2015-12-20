@@ -33,13 +33,22 @@ const target = 150;
 
 const sortedData = data.sort((a,b) => a>b);
 var combinationCount = 0;
+var minCombinationCount = 0;
+var min = null;
 
 nChose(sortedData, arr => {
   if(arr.sum() === target) {
     console.log(arr);
     combinationCount++;
   }
+
+  if(arr.sum() === target && (min === null || min === arr.length)) {
+    min = arr.length;
+    console.log(arr);
+    minCombinationCount++;
+  }
 })
 
 console.log('combinationCount:', combinationCount)
+console.log('minCombinationCount:', minCombinationCount)
 

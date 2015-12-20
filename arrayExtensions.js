@@ -40,6 +40,11 @@ function product(field) {
   return this.reduce((p,c)=>p*field(c), 1);
 }
 
+function count(field) {
+  if(field === undefined) field = x => x;
+  return this.filter(field).length;
+}
+
 
 function useFlatten() {
   Array.prototype.flatten = flatten;
@@ -69,6 +74,10 @@ function useProduct() {
   Array.prototype.product = product;
 }
 
+function useCount() {
+  Array.prototype.count = count;
+}
+
 module.exports = {
   useFlatten: useFlatten,
   useToObject: useToObject,
@@ -76,5 +85,6 @@ module.exports = {
   useMin: useMin,
   useMax: useMax,
   useSum: useSum,
-  useProduct: useProduct
+  useProduct: useProduct,
+  useCount: useCount
 }

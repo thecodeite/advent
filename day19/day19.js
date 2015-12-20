@@ -20,7 +20,7 @@ const parsedData = data.map(parseLine);
 
 //console.log(parsedData);
 
-var count = 0;
+
 const results = new Set();
 parsedData.forEach(t => {
   var pos;
@@ -42,8 +42,29 @@ parsedData.forEach(t => {
   } while(pos !== -1)
 })
 
+var target = input;
+var comp = (a, b) => (a[1].length - a[0].length) < (b[1].length - b[0].length);
+
+parsedData.forEach(x => x[2] = x[1].length - x[0].length);
+
+var reductions = parsedData.slice().sort((a, b) => b[2] - a[2])
+
+//console.log(reductions)
+var count = 0;
+while(target != 'e') {
+  var sub = reductions.find(r => target.indexOf(r[1]) !== -1)
+  
+ 
+  
+  target = target.replace(sub[1], sub[0]);
+   console.log(sub, target.length);
+  
+  
+  count++;
+}
+
 console.log('Results:', results.size)
-//console.log('count:', count)
+console.log('count:', count)
 
 
 function parseLine(line) {
